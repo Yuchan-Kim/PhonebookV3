@@ -2,6 +2,7 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,7 +16,8 @@ import com.javaex.vo.PersonVo;
 @Controller
 public class PhonebookController {
 	//Fields
-	private phonebookDao dao = new phonebookDao();
+	@Autowired
+	private phonebookDao dao;
 	
 	//Constructors
 	
