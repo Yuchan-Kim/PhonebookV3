@@ -97,7 +97,7 @@ public class phonebookDao  {
     //Save new person's information to the database
     public int insertPerson(PersonVo personvo) {
     	this.getConnection();
-    	
+    	int count = -1;
     	System.out.println("Initiated DAO insertPerson method");
     	
     	try {
@@ -116,14 +116,14 @@ public class phonebookDao  {
     		pstmt.setString(3, personvo.getCompanyhp());
     		
     		//실행
-    		pstmt.executeUpdate();
+    		count = pstmt.executeUpdate();
     		
     		
     	}catch (SQLException e) {
     		System.out.println("Error : " + e);
     	}
     	
-		return 0;
+		return count;
     	
     }
     

@@ -1,6 +1,9 @@
 package com.javaex.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +21,35 @@ public class PhonebookController {
 	//Getters and Setters
 	
 	//[Methods]
+	@RequestMapping(value ="/delete", method = {RequestMethod.GET, RequestMethod.POST} )
+	public String delete(@RequestParam(value = "num") int num) {
+		
+		
+		System.out.println("Phonebookcontroller.delete()");
+		phonebookDao dao = new phonebookDao();
+		dao.deletePerson(num);
+		
+		return "redirect:/list";
+	}
+	
+	
+	
+	
+	
+	@RequestMapping(value ="/list", method = {RequestMethod.GET, RequestMethod.POST} )
+	public String list(Model model) {
+		System.out.println("PhonebookController.list()");
+		
+		phonebookDao dao = new phonebookDao();
+		List<PersonVo> personList = dao.getPersonList();
+		
+		System.out.println(personList);
+		
+		model.addAttribute("personList",personList);
+		
+		return "/WEB-INF/views/list.jsp"; //Forwarding
+	}
+	
 	
 	//Register Form
 	@RequestMapping(value ="/writeform", method = {RequestMethod.GET, RequestMethod.POST} )
@@ -37,7 +69,7 @@ public class PhonebookController {
 		int count = dao.insertPerson(personVo);
 		
 		System.out.println(count);
-		return "";
+		return "redirect:/list";
 		
 	}
 	
@@ -49,10 +81,10 @@ public class PhonebookController {
 		System.out.println("PhonebookController.write2()");
 		
 		PersonVo personVo = new PersonVo(name,hp,company);
-		System.out.println(personVo);
+		write(personVo);
 		
 		
-		return "";
+		return "redirect:/list";
 		
 	}
 }
