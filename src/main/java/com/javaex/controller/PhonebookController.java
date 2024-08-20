@@ -24,8 +24,9 @@ public class PhonebookController {
 		return "/WEB-INF/views/writeForm.jsp";
 	}
 	
+	@RequestMapping(value = "/write" , method = {RequestMethod.GET, RequestMethod.POST})
 	public String write() {
-		
+		System.out.println("PhonebookController.write()");
 		
 		
 		return null;
