@@ -15,6 +15,7 @@ import com.javaex.vo.PersonVo;
 @Controller
 public class PhonebookController {
 	//Fields
+	private phonebookDao dao = new phonebookDao();
 	
 	//Constructors
 	
@@ -26,28 +27,25 @@ public class PhonebookController {
 		
 		
 		System.out.println("Phonebookcontroller.delete()");
-		phonebookDao dao = new phonebookDao();
+		
 		dao.deletePerson(num);
 		
 		return "redirect:/list";
 	}
 	
 	
-	
-	
-	
 	@RequestMapping(value ="/list", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String list(Model model) {
 		System.out.println("PhonebookController.list()");
 		
-		phonebookDao dao = new phonebookDao();
+		
 		List<PersonVo> personList = dao.getPersonList();
 		
 		System.out.println(personList);
 		
 		model.addAttribute("personList",personList);
 		
-		return "/WEB-INF/views/list.jsp"; //Forwarding
+		return "list"; //Forwarding
 	}
 	
 	
@@ -58,14 +56,14 @@ public class PhonebookController {
 		
 		
 		
-		return "/WEB-INF/views/writeForm.jsp";
+		return "writeForm";
 	}
 	
 	@RequestMapping(value = "/write" , method = {RequestMethod.GET, RequestMethod.POST})
 	public String write(@ModelAttribute PersonVo personVo) {
 		System.out.println("PhonebookController.write()");
 		
-		phonebookDao dao = new phonebookDao();
+		
 		int count = dao.insertPerson(personVo);
 		
 		System.out.println(count);
@@ -82,7 +80,6 @@ public class PhonebookController {
 		
 		PersonVo personVo = new PersonVo(name,hp,company);
 		write(personVo);
-		
 		
 		return "redirect:/list";
 		
