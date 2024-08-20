@@ -6,8 +6,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class PhonebookController {
+	//Fields
 	
+	//Constructors
 	
+	//Getters and Setters
+	
+	//[Methods]
+	
+	//Register Form
 	@RequestMapping(value ="/writeform", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String writeForm() {
 		System.out.println("PhonebookController.writeForm()");
@@ -15,5 +22,13 @@ public class PhonebookController {
 		
 		
 		return "/WEB-INF/views/writeForm.jsp";
+	}
+	
+	public String write() {
+		
+		
+		
+		return null;
+		
 	}
 }
