@@ -29,7 +29,7 @@
             <td>${personVo.companyhp}</td>
         </tr>
         <tr>
-        	<td><a href = "">수정</a></td>
+        	<td><a href = "/phonebook3/editform?num=${personVo.personID}">수정</a></td>
         	<td><a href = "/phonebook3/delete?num=${personVo.personID}" >삭제</a></td>
         </tr>
         <br><br>

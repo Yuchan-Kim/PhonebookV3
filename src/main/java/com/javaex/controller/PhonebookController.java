@@ -51,15 +51,24 @@ public class PhonebookController {
 	}
 	
 	
-	//Register Form
-	@RequestMapping(value ="/writeform", method = {RequestMethod.GET, RequestMethod.POST} )
-	public String writeForm() {
-		System.out.println("PhonebookController.writeForm()");
-		
-		
-		
-		return "writeForm";
+	@RequestMapping(value = "/editform",  method = {RequestMethod.GET, RequestMethod.POST})
+	public String editForm(Model model, @RequestParam(value = "num") int num) {
+	    PersonVo person = dao.getPerson(num);
+	    model.addAttribute("person", person);
+	    return "editform";  // JSP 파일 이름 반환
 	}
+
+	@RequestMapping(value = "/edit",  method = {RequestMethod.GET, RequestMethod.POST})
+	public String edit(@RequestParam(value = "num") int num,
+	                   @RequestParam(value = "name") String name,
+	                   @RequestParam(value = "hp") String hp,
+	                   @RequestParam(value = "company") String company) {
+	    PersonVo personVo = new PersonVo(num, name, hp, company);
+	    dao.updatePerson(personVo);
+	    return "redirect:/list"; 
+	}
+
+	
 	
 	@RequestMapping(value = "/write" , method = {RequestMethod.GET, RequestMethod.POST})
 	public String write(@ModelAttribute PersonVo personVo) {
@@ -69,7 +78,7 @@ public class PhonebookController {
 		int count = dao.insertPerson(personVo);
 		
 		System.out.println(count);
-		return "redirect:/list";
+		return "redirect:/list"; 
 		
 	}
 	
@@ -83,7 +92,7 @@ public class PhonebookController {
 		PersonVo personVo = new PersonVo(name,hp,company);
 		write(personVo);
 		
-		return "redirect:/list";
+		return "";
 		
 	}
 }
