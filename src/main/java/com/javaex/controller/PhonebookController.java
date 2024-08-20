@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.javaex.dao.phonebookDao;
 import com.javaex.vo.PersonVo;
 
 @Controller
@@ -32,7 +33,10 @@ public class PhonebookController {
 	public String write(@ModelAttribute PersonVo personVo) {
 		System.out.println("PhonebookController.write()");
 		
-		System.out.println(personVo);
+		phonebookDao dao = new phonebookDao();
+		int count = dao.insertPerson(personVo);
+		
+		System.out.println(count);
 		return "";
 		
 	}
