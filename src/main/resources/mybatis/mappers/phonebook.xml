@@ -3,5 +3,30 @@
 
 
 <mapper namespace="phonebook">
-<!-- 쿼리문작성 -->
+	
+	<delete id = "delete" parameterType = "int">
+		<![CDATA[
+		delete from person
+		where person_id = #{jiminpark}
+		]]>
+		
+	</delete>
+	
+	<insert id = "insert" parameterType = "com.javaex.vo.PersonVo" >
+		<![CDATA[ insert into person
+		values(null, #{name}, #{hp}, #{companyhp}) ]]>
+	</insert>
+	
+	<select id = "selectList" resultType="com.javaex.vo.PersonVo">
+		<![CDATA[ select person_id, name, hp, company from person ]]>
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="com.javaex.vo.PersonVo">
+		<![CDATA[ select person_id, name, hp, company from person where person_id = #{personId} ]]>
+	</select>
+	
+	<update id="update" parameterType = "com.javaex.vo.PersonVo" >
+		<![CDATA[ update person set name = #{name} , hp = #{hp} , company = #{companyhp}  where person_id = #{personID} ]]>
+	</update>
+	
 </mapper>
