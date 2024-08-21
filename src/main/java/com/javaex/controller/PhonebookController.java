@@ -27,7 +27,6 @@ public class PhonebookController {
 	@RequestMapping(value ="/delete", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String delete(@RequestParam(value = "num") int num) {
 		
-		
 		System.out.println("Phonebookcontroller.delete()");
 		
 		dao.deletePerson(num);
@@ -57,6 +56,7 @@ public class PhonebookController {
 	    model.addAttribute("person", person);
 	    return "editform";  // JSP 파일 이름 반환
 	}
+	
 
 	@RequestMapping(value = "/edit",  method = {RequestMethod.GET, RequestMethod.POST})
 	public String edit(@RequestParam(value = "num") int num,
@@ -71,10 +71,12 @@ public class PhonebookController {
 	
 	
 	@RequestMapping(value = "/write" , method = {RequestMethod.GET, RequestMethod.POST})
-	public String write(@ModelAttribute PersonVo personVo) {
+	public String write(@RequestParam(value = "name") String name, 
+			@RequestParam(value = "hp") String hp, 
+			@RequestParam(value = "company") String company ) {
 		System.out.println("PhonebookController.write()");
 		
-		
+		PersonVo personVo = new PersonVo(name,hp,company);
 		int count = dao.insertPerson(personVo);
 		
 		System.out.println(count);
@@ -82,17 +84,13 @@ public class PhonebookController {
 		
 	}
 	
-	@RequestMapping(value = "/write2" , method = {RequestMethod.GET, RequestMethod.POST})
-	public String write(@RequestParam(value = "name") String name, 
-						@RequestParam(value = "hp") String hp, 
-						@RequestParam(value = "company") String company ) {
+	@RequestMapping(value = "/writeform" , method = {RequestMethod.GET, RequestMethod.POST})
+	public String write2() {
 		
-		System.out.println("PhonebookController.write2()");
+		System.out.println("PhonebookController.writeform()");
 		
-		PersonVo personVo = new PersonVo(name,hp,company);
-		write(personVo);
 		
-		return "";
+		return "writeForm";
 		
 	}
 }

@@ -35,7 +35,7 @@
         <br><br>
     </table>
     </c:forEach>
-    <a href = "" id="listButton">전화번호 등록</a>
+    <a href = "/phonebook3/writeform" id="listButton">전화번호 등록</a>
     
 </body>
 </html>

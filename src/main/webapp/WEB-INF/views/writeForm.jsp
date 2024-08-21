@@ -13,7 +13,7 @@
 
 	<p>아래의 항목을 입력한 후 등록버튼을 클릭해 주세요</p>
 	
-	<form action="/phonebook3/write2" method="get">
+	<form action="/phonebook3/write" method="get">
 		<div>
 			<label for="txt-name">이름(name):</label> 
 			<input id="txt-name" type="text" name="name" value="" placeholder="이름">
@@ -33,7 +33,7 @@
 	
 	
 	<br><br>
-	<a href="">리스트로 가기</a>
+	<a href="/phonebook3/list">리스트로 가기</a>
 	
 
 </body>
