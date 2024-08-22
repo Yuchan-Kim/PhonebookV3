@@ -4,12 +4,18 @@
 
 <mapper namespace="phonebook">
 	
+	<resultMap id="resultMapPersonVo" type="com.javaex.vo.PersonVo">
+    	<result column="person_id" property="personID" />
+    	<result column="name" property="name" />
+    	<result column="hp" property="hp" />
+    	<result column="company" property="companyhp" />
+    </resultMap>
+
+
+
+	
 	<delete id = "delete" parameterType = "int">
-		<![CDATA[
-		delete from person
-		where person_id = #{jiminpark}
-		]]>
-		
+		<![CDATA[ delete from person where person_id = #{jiminpark}]]>
 	</delete>
 	
 	<insert id = "insert" parameterType = "com.javaex.vo.PersonVo" >
@@ -17,12 +23,16 @@
 		values(null, #{name}, #{hp}, #{companyhp}) ]]>
 	</insert>
 	
-	<select id = "selectList" resultType="com.javaex.vo.PersonVo">
+	<select id = "selectList" resultMap="resultMapPersonVo">
 		<![CDATA[ select person_id, name, hp, company from person ]]>
 	</select>
 	
-	<select id="selectOne" parameterType="int" resultType="com.javaex.vo.PersonVo">
+	<select id="selectOne" parameterType="int" resultMap="resultMapPersonVo">
 		<![CDATA[ select person_id, name, hp, company from person where person_id = #{personId} ]]>
+	</select>
+	
+	<select id="selectOneMap" parameterType="int" resultMap="map">
+		<![CDATA[ select person_id personID, name, hp, companyhp from person where personID = #{personId} ]]>
 	</select>
 	
 	<update id="update" parameterType = "com.javaex.vo.PersonVo" >
@@ -30,3 +40,4 @@
 	</update>
 	
 </mapper>
+	

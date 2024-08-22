@@ -61,10 +61,12 @@ public class PhonebookController {
 	
 	@RequestMapping(value = "/editform",  method = {RequestMethod.GET, RequestMethod.POST})
 	public String editForm(Model model, @RequestParam(value = "num") int num) {
-	    PersonVo person = dao.getPerson(num);
+	    PersonVo person = service.exeGetPersonInfo(num);
 	    model.addAttribute("person", person);
 	    return "editform";  // JSP 파일 이름 반환
 	}
+	
+	
 	
 
 	@RequestMapping(value = "/edit",  method = {RequestMethod.GET, RequestMethod.POST})

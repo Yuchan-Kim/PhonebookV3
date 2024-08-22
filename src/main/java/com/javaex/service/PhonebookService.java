@@ -1,6 +1,7 @@
 package com.javaex.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,15 @@ public class PhonebookService {
 		int count = dao.updatePerson(personVo);
 		
 		return count;
+	}
+	
+	public PersonVo exeGetPersonInfo(int num) {
+		return dao.getPerson(num);
+	}
+	
+	public Map<String, Object> exeEditForm2(int no){
+		System.out.println("PhonebookService.exxeEditForm2()");
+		return null;
 	}
 	
 	

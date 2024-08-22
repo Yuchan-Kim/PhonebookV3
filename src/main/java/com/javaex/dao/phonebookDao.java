@@ -1,12 +1,7 @@
 package com.javaex.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +19,8 @@ public class phonebookDao  {
 	//Bring person's information
 	public PersonVo getPerson(int no) {
 		
-		PersonVo person = sqlsession.selectOne("phonebook.selectOne",  no);
-		return person;
+		Map<String,Object> person = sqlsession.selectOne("phonebook.selectOne",  no);
+		return (PersonVo) person;
 
 	}
 
@@ -57,6 +52,8 @@ public class phonebookDao  {
 
 		return count;
 	}
+	
+	
 
 
 
